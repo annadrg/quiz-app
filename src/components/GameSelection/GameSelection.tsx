@@ -1,6 +1,7 @@
 import { FormEvent, useState } from 'react';
 import Button from '../Button';
 import CategoryButton from '../CategoryButton';
+import { useQuestionStore } from '../../store/question';
 
 const CATEGORIES = {
   '9': 'General knowledge',
@@ -20,10 +21,12 @@ const DIFFICULTIES = {
   mix: 'Mixed',
 } as const;
 
-type Category = keyof typeof CATEGORIES;
-type Difficulty = keyof typeof DIFFICULTIES;
+export type Category = keyof typeof CATEGORIES;
+export type Difficulty = keyof typeof DIFFICULTIES;
 
 function GameSelection() {
+  const getQuestions = useQuestionStore((state) => state.getQuestions);
+
   const categoryKeys = Object.keys(CATEGORIES) as Category[];
   const difficultyKeys = Object.keys(DIFFICULTIES) as Difficulty[];
 
@@ -36,7 +39,7 @@ function GameSelection() {
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
 
-    console.log({ category, difficulty });
+    getQuestions(category, difficulty);
 
     setCategory(defaultCategory);
     setDifficulty(defaultDifficulty);
