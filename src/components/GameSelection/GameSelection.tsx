@@ -46,6 +46,7 @@ function GameSelection() {
     <form onSubmit={handleSubmit}>
       {categoryKeys.map((option) => (
         <CategoryButton
+          key={option}
           isSelected={category === option}
           categoryName={CATEGORIES[option]}
           onClick={() => setCategory(option)}
@@ -54,7 +55,7 @@ function GameSelection() {
       {difficultyKeys.map((option) => {
         const id = `difficulty-${option}`;
         return (
-          <label htmlFor={id}>
+          <label key={option} htmlFor={id}>
             <input
               id={id}
               type="radio"
