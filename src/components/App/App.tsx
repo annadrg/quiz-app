@@ -1,5 +1,11 @@
+import GameSelection from '../GameSelection';
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <GameSelection />
+    </>
+  );
 }
 
 export default App;
