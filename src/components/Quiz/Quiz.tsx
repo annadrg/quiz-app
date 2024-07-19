@@ -3,6 +3,7 @@ import { useAnswerStore } from '../../store/answer';
 import { QUIZ_LENGTH, useQuestionStore } from '../../store/question';
 import QuestionView from '../QuestionView';
 import Button from '../Button';
+import Results from '../Results';
 
 function Quiz() {
   const { questions, resetState: resetQuestions } = useQuestionStore();
@@ -21,7 +22,7 @@ function Quiz() {
   if (answers.length === QUIZ_LENGTH) {
     return (
       <div>
-        End
+        <Results />
         <Button
           onClick={() => {
             resetAnswers();
