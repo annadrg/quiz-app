@@ -1,11 +1,18 @@
 import { create } from 'zustand';
-import { fetcher } from '../helpers';
+import { fetcher, randomlyInsertIntoArray } from '../helpers';
 import { Category, Difficulty } from '../components/GameSelection';
 
 const QUIZ_API_URL = 'https://opentdb.com/api.php' as const;
 export const QUIZ_LENGTH = 10 as const;
 
 export interface Question {
+  type: 'multiple' | 'boolean';
+  question: string;
+  correct_answer: string;
+  options: string[];
+}
+
+interface ApiQuestion {
   type: 'multiple' | 'boolean';
   difficulty: 'easy' | 'medium' | 'hard';
   category: string;
@@ -34,9 +41,24 @@ export const useQuestionStore = create<QuestionStore>()((set) => ({
         ...(difficulty !== 'mix' ? { difficulty } : {}),
       });
 
+      const questions: Question[] = data.results.map(
+        (question: ApiQuestion) => ({
+          type: question.type,
+          question: decodeURIComponent(question.question),
+          correct_answer: decodeURIComponent(question.correct_answer),
+          options:
+            question.type === 'multiple'
+              ? randomlyInsertIntoArray(
+                  question.incorrect_answers,
+                  question.correct_answer
+                ).map((answer) => decodeURIComponent(answer))
+              : ['True', 'False'],
+        })
+      );
+
       set(() => ({
         status: 'success',
-        questions: data.results,
+        questions,
       }));
     } catch (error) {
       set(() => ({ status: 'error' }));

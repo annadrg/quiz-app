@@ -4,13 +4,15 @@ interface Props {
   name: string;
   selected: string | null;
   onChange: ChangeEventHandler<HTMLInputElement>;
-  options: Record<string, string>;
+  options: Record<string, string> | string[];
 }
 
 function RadioGroup({ name, options, selected, onChange }: Props) {
+  const optionsIsArray = Array.isArray(options);
   return (
     <>
-      {Object.entries(options).map(([value, label]) => {
+      {Object.entries(options).map(([key, label]) => {
+        const value = optionsIsArray ? label : key;
         const id = `${name}-${value}`;
         return (
           <label key={id} htmlFor={id}>
