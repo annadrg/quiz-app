@@ -3,8 +3,9 @@ import { fetcher } from '../helpers';
 import { Category, Difficulty } from '../components/GameSelection';
 
 const QUIZ_API_URL = 'https://opentdb.com/api.php' as const;
+export const QUIZ_LENGTH = 10 as const;
 
-interface Question {
+export interface Question {
   type: 'multiple' | 'boolean';
   difficulty: 'easy' | 'medium' | 'hard';
   category: string;
@@ -27,7 +28,8 @@ export const useQuestionStore = create<QuestionStore>()((set) => ({
     try {
       set(() => ({ status: 'loading' }));
       const data = await fetcher(QUIZ_API_URL, {
-        amount: '10',
+        amount: String(QUIZ_LENGTH),
+        encode: 'url3986',
         category,
         ...(difficulty !== 'mix' ? { difficulty } : {}),
       });

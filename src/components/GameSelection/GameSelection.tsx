@@ -2,6 +2,7 @@ import { FormEvent, useState } from 'react';
 import Button from '../Button';
 import CategoryButton from '../CategoryButton';
 import { useQuestionStore } from '../../store/question';
+import RadioGroup from '../RadioGroup';
 
 const CATEGORIES = {
   '9': 'General knowledge',
@@ -55,22 +56,12 @@ function GameSelection() {
           onClick={() => setCategory(option)}
         />
       ))}
-      {difficultyKeys.map((option) => {
-        const id = `difficulty-${option}`;
-        return (
-          <label key={option} htmlFor={id}>
-            <input
-              id={id}
-              type="radio"
-              name="difficulty"
-              value={option}
-              checked={difficulty === option}
-              onChange={() => setDifficulty(option)}
-            />
-            {DIFFICULTIES[option]}
-          </label>
-        );
-      })}
+      <RadioGroup
+        name="difficulty"
+        options={DIFFICULTIES}
+        selected={difficulty}
+        onChange={(event) => setDifficulty(event.target.value as Difficulty)}
+      />
       <Button type="submit">Start quiz</Button>
     </form>
   );
