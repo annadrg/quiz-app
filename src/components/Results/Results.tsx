@@ -16,7 +16,11 @@ function Results() {
     <>
       <p>You scored {score} points!</p>
       {questions.map((question, index) => (
-        <QuestionResult question={question} selectedAnswer={answers[index]} />
+        <QuestionResult
+          key={index}
+          question={question}
+          selectedAnswer={answers[index]}
+        />
       ))}
     </>
   );

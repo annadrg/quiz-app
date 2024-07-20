@@ -16,6 +16,7 @@ function QuestionResult({ question, selectedAnswer }: Props) {
 
           return (
             <div
+              key={option}
               style={{
                 backgroundColor: isCorrect
                   ? 'green'
