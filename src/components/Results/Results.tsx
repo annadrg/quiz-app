@@ -1,6 +1,7 @@
 import { calculateScore } from '../../helpers';
 import { useAnswerStore } from '../../store/answer';
 import { useQuestionStore } from '../../store/question';
+import QuestionResult from '../QuestionResult';
 
 function Results() {
   const { questions } = useQuestionStore();
@@ -11,7 +12,14 @@ function Results() {
     answers
   );
 
-  return <p>You scored {score} points!</p>;
+  return (
+    <>
+      <p>You scored {score} points!</p>
+      {questions.map((question, index) => (
+        <QuestionResult question={question} selectedAnswer={answers[index]} />
+      ))}
+    </>
+  );
 }
 
 export default Results;

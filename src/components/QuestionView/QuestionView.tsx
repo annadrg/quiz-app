@@ -11,7 +11,7 @@ interface Props {
 function QuestionView({ question, selectedAnswer, onChange }: Props) {
   return (
     <div>
-      <p>{decodeURIComponent(question.question)}</p>
+      <p>{question.question}</p>
       <div>
         <RadioGroup
           name="answer"
