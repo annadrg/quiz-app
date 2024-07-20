@@ -27,12 +27,22 @@ export const useQuestionStore = create<QuestionStore>()((set) => ({
   getQuestions: async (category, difficulty) => {
     try {
       set(() => ({ status: 'loading' }));
-      const data = await fetcher(QUIZ_API_URL, {
+
+      const searchParams = new URLSearchParams({
         amount: String(QUIZ_LENGTH),
         encode: 'url3986',
         category,
         ...(difficulty !== 'mix' ? { difficulty } : {}),
       });
+      const url = QUIZ_API_URL + '?' + searchParams.toString();
+
+      const response = await fetch(url);
+      const data = await response.json();
+
+      if (!response.ok || data.response_code !== 0) {
+        set(() => ({ status: 'error' }));
+        return;
+      }
 
       const questions: Question[] = data.results.map(
         (question: ApiQuestion) => ({
@@ -49,10 +59,7 @@ export const useQuestionStore = create<QuestionStore>()((set) => ({
         })
       );
 
-      set(() => ({
-        status: 'success',
-        questions,
-      }));
+      set(() => ({ status: 'success', questions }));
     } catch (error) {
       set(() => ({ status: 'error' }));
     }

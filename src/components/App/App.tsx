@@ -1,4 +1,5 @@
 import { useQuestionStore } from '../../store/question';
+import ErrorView from '../ErrorView';
 import GameSelection from '../GameSelection';
 import Quiz from '../Quiz';
 
@@ -8,6 +9,7 @@ function App() {
     <>
       {status === 'idle' && <GameSelection />}
       {status === 'success' && <Quiz />}
+      {status === 'error' && <ErrorView />}
     </>
   );
 }
