@@ -3,27 +3,8 @@ import Button from '../Button';
 import CategoryButton from '../CategoryButton';
 import { useQuestionStore } from '../../store/question';
 import RadioGroup from '../RadioGroup';
-
-const CATEGORIES = {
-  '9': 'General knowledge',
-  '12': 'Music',
-  '17': 'Science & Nature',
-  '21': 'Sports',
-  '22': 'Geography',
-  '23': 'History',
-  '24': 'Politics',
-  '26': 'Celebrities',
-} as const;
-
-const DIFFICULTIES = {
-  easy: 'Easy',
-  medium: 'Medium',
-  hard: 'Hard',
-  mix: 'Mixed',
-} as const;
-
-export type Category = keyof typeof CATEGORIES;
-export type Difficulty = keyof typeof DIFFICULTIES;
+import { CATEGORIES, DIFFICULTIES } from '../../constants';
+import { Category, Difficulty } from '../../types';
 
 function GameSelection() {
   const getQuestions = useQuestionStore((state) => state.getQuestions);

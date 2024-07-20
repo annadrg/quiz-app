@@ -1,16 +1,9 @@
 import { create } from 'zustand';
-import { fetcher, randomlyInsertIntoArray } from '../helpers';
-import { Category, Difficulty } from '../components/GameSelection';
+import { randomlyInsertIntoArray } from '../helpers';
+import { Category, Difficulty, Question } from '../types';
+import { QUIZ_LENGTH } from '../constants';
 
 const QUIZ_API_URL = 'https://opentdb.com/api.php' as const;
-export const QUIZ_LENGTH = 10 as const;
-
-export interface Question {
-  type: 'multiple' | 'boolean';
-  question: string;
-  correct_answer: string;
-  options: string[];
-}
 
 interface ApiQuestion {
   type: 'multiple' | 'boolean';

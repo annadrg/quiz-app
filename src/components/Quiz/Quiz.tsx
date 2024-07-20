@@ -1,9 +1,10 @@
 import { FormEvent, useState } from 'react';
 import { useAnswerStore } from '../../store/answer';
-import { QUIZ_LENGTH, useQuestionStore } from '../../store/question';
+import { useQuestionStore } from '../../store/question';
 import QuestionView from '../QuestionView';
 import Button from '../Button';
 import Results from '../Results';
+import { QUIZ_LENGTH } from '../../constants';
 
 function Quiz() {
   const { questions, resetState: resetQuestions } = useQuestionStore();

@@ -1,6 +1,6 @@
 import { ChangeEventHandler } from 'react';
-import { Question } from '../../store/question';
 import RadioGroup from '../RadioGroup';
+import { Question } from '../../types';
 
 interface Props {
   question: Question;

@@ -1,4 +1,4 @@
-import { Question } from '../../store/question';
+import { Question } from '../../types';
 
 interface Props {
   question: Question;
