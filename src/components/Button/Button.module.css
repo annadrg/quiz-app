@@ -19,3 +19,7 @@
 .button:focus {
   background-color: rgba(var(--buttonColor), 0.8);
 }
+
+.button:disabled {
+  background-color: #AEAEAD;
+}

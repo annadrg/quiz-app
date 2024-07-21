@@ -46,7 +46,9 @@ function Quiz() {
         selectedAnswer={selectedAnswer}
         onChange={(event) => setSelectedAnswer(event.target.value)}
       />
-      <Button className={styles.quizButton}>Submit answer</Button>
+      <Button className={styles.quizButton} disabled={selectedAnswer === null}>
+        Submit answer
+      </Button>
     </form>
   );
 }
