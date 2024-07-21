@@ -1,5 +1,6 @@
 import { MouseEventHandler } from 'react';
 import Button from '../Button';
+import styles from './CategoryButton.module.css';
 
 interface Props {
   isSelected: boolean;
@@ -10,10 +11,10 @@ interface Props {
 function CategoryButton({ isSelected, categoryName, onClick }: Props) {
   return (
     <Button
+      className={`${styles.categoryButton} ${isSelected ? styles.selected : ''}`}
       type="button"
       onClick={onClick}
       aria-pressed={isSelected}
-      style={isSelected ? { fontWeight: 700 } : undefined}
     >
       {categoryName}
     </Button>

@@ -1,0 +1,28 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 25px;
+}
+
+.form h2 {
+  margin-bottom: 10px;
+}
+
+.form > div {
+  width: 100%;
+}
+
+.categories {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
+  gap: 8px 12px;
+}
+
+@media (max-width: 500px) {
+  .categories {
+    grid-template-columns: 1fr;
+  }
+}

@@ -13,23 +13,29 @@
 }
 
 #root {
+  width: min(100%, 800px);
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+
+  --buttonColor: 49, 133, 252;
 }
 
 body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
   min-height: 100vh;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 2.5em;
+  margin: 0;
+}
+
+h2 {
+  margin: 0;
 }
 
 

@@ -1,0 +1,21 @@
+
+.button {
+  background-color: rgba(var(--buttonColor), 1);
+  width: fit-content;
+  border-radius: 100px;
+  border: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  font-size: 1em;
+  font-weight: 600;
+  padding: 12px 32px;
+  position: relative;
+  transition: background-color 300ms;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.button:hover,
+.button:focus {
+  background-color: rgba(var(--buttonColor), 0.8);
+}

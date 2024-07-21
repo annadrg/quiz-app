@@ -5,6 +5,7 @@ import { useQuestionStore } from '../../store/question';
 import RadioGroup from '../RadioGroup';
 import { CATEGORIES, DIFFICULTIES } from '../../constants';
 import { Category, Difficulty } from '../../types';
+import styles from './GameSelection.module.css';
 
 function GameSelection() {
   const getQuestions = useQuestionStore((state) => state.getQuestions);
@@ -28,21 +29,30 @@ function GameSelection() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      {categoryKeys.map((option) => (
-        <CategoryButton
-          key={option}
-          isSelected={category === option}
-          categoryName={CATEGORIES[option]}
-          onClick={() => setCategory(option)}
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <h1>Quiz</h1>
+      <div>
+        <h2>Category</h2>
+        <div className={styles.categories}>
+          {categoryKeys.map((option) => (
+            <CategoryButton
+              key={option}
+              isSelected={category === option}
+              categoryName={CATEGORIES[option]}
+              onClick={() => setCategory(option)}
+            />
+          ))}
+        </div>
+      </div>
+      <div>
+        <h2>Difficulty</h2>
+        <RadioGroup
+          name="difficulty"
+          options={DIFFICULTIES}
+          selected={difficulty}
+          onChange={(event) => setDifficulty(event.target.value as Difficulty)}
         />
-      ))}
-      <RadioGroup
-        name="difficulty"
-        options={DIFFICULTIES}
-        selected={difficulty}
-        onChange={(event) => setDifficulty(event.target.value as Difficulty)}
-      />
+      </div>
       <Button type="submit">Start quiz</Button>
     </form>
   );

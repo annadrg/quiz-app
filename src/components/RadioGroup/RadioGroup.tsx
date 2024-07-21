@@ -10,7 +10,7 @@ interface Props {
 function RadioGroup({ name, options, selected, onChange }: Props) {
   const optionsIsArray = Array.isArray(options);
   return (
-    <>
+    <div>
       {Object.entries(options).map(([key, label]) => {
         const value = optionsIsArray ? label : key;
         const id = `${name}-${value}`;
@@ -28,7 +28,7 @@ function RadioGroup({ name, options, selected, onChange }: Props) {
           </label>
         );
       })}
-    </>
+    </div>
   );
 }
 
