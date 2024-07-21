@@ -5,6 +5,7 @@ import QuestionView from '../QuestionView';
 import Button from '../Button';
 import Results from '../Results';
 import { QUIZ_LENGTH } from '../../constants';
+import styles from './Quiz.module.css';
 
 function Quiz() {
   const { questions, resetState: resetQuestions } = useQuestionStore();
@@ -25,6 +26,7 @@ function Quiz() {
       <div>
         <Results />
         <Button
+          className={styles.quizButton}
           onClick={() => {
             resetAnswers();
             resetQuestions();
@@ -39,11 +41,12 @@ function Quiz() {
   return (
     <form onSubmit={handleSubmit}>
       <QuestionView
+        number={answers.length + 1}
         question={questions[answers.length]}
         selectedAnswer={selectedAnswer}
         onChange={(event) => setSelectedAnswer(event.target.value)}
       />
-      <Button>Submit answer</Button>
+      <Button className={styles.quizButton}>Submit answer</Button>
     </form>
   );
 }

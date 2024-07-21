@@ -13,6 +13,8 @@
 }
 
 #root {
+  display: flex;
+  justify-content: center;
   width: min(100%, 800px);
   max-width: 1280px;
   margin: 0 auto;

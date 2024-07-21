@@ -1,0 +1,23 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+}
+
+.wrapper > div {
+ display: flex;
+ flex-direction: column;
+ gap: 10px;
+}
+
+/* .wrapper label {
+    width: 100%;
+} */
+
+
+
+@media (max-width: 500px) {
+    .question {
+        font-size: 1.8em;
+      }
+}
